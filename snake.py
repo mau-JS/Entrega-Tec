@@ -9,7 +9,7 @@ Exercises
 from turtle import *
 import random
 from freegames import square, vector
-
+#
 saltos=[16,-16]
 
 food = vector(0, 0)
