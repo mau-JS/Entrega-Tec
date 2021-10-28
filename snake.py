@@ -10,6 +10,8 @@ from turtle import *
 import random
 from freegames import square, vector
 
+saltos=[16,-16]
+
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
@@ -43,7 +45,7 @@ def move():
         print('Snake:', len(snake))
         food.x = random.randrange(-15, 15) * 10
         food.y = random.randrange(-15, 15) * 10
-
+        square(food.x, food.y, 9, colorFood)
     else:
         snake.pop(0)
 
@@ -51,10 +53,22 @@ def move():
 
     for body in snake:
         square(body.x, body.y, 9, colorSnake)
+    if(food.x<180 and food.x>-180):
+        food.x = food.x+random.choice(saltos)
+    elif(food.y<180 and food.y>-180):
+        food.y=food.y+random.choice(saltos)
+    elif(food.x>180):
+        food.x = food.x -saltos[0]
+    elif (food.x < -180):
+        food.x = food.x + saltos[0]
+    elif (food.y > 180):
+        food.x = food.x - saltos[0]
+    elif (food.y < -180):
+        food.x = food.x + saltos[0]
 
     square(food.x, food.y, 9, colorFood)
     update()
-    ontimer(move, 100)
+    ontimer(move, 50)
 
 setup(420, 420, 370, 0)
 hideturtle()
